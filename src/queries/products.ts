@@ -26,10 +26,8 @@ export function useAvailableProduct(id?: string) {
   return useQuery<AvailableProduct, AxiosError>(
     ["product", { id }],
     async () => {
-      const res = await axios.get<AvailableProduct>(
-        `${API_PATHS.bff}/product/${id}`
-      );
-      return res.data;
+      const res = await axios.get(`${API_PATHS.products}/products/${id}`);
+      return res.data.product;
     },
     { enabled: !!id }
   );
